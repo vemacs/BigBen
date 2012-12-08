@@ -9,5 +9,5 @@ public class BongListener implements Listener{
         plugin = BigBen;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         new Thread(new BongThread()).start();
-        }
+     }
 }

@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 public class BongThread implements Runnable {
     public void run() {
-        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + ">";
+        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + "> ";
         int nextHour = BongLib.nextHour();
         int waitTime = BongLib.secondsUntilNextHour();
         try {

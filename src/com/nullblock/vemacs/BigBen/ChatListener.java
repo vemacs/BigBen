@@ -16,7 +16,7 @@ public class ChatListener implements Listener{
     }
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
-        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + ">";
+        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + "> ";
     	String eventMessage = event.getMessage().toLowerCase();
     	if(eventMessage.startsWith("bigben: ") && eventMessage.endsWith("??")){
     		Bukkit.broadcastMessage(prefix + "No.");
