@@ -21,10 +21,17 @@ public class BigBenTest {
 			int secondsUntilNextHour = nexthour * 3600 - second;
 			System.out.println(second);
 			System.out.println(secondsUntilNextHour);
-			for(int i=1; i <= 24; i++){
-	            int h = i % 12;
-	            System.out.println(BongLib.bongText(h));
-			}
+	        int hour = 1;
+	        for(;;){
+	            try {
+	                Thread.sleep(1000);
+	            } catch(InterruptedException ex) {
+	                Thread.currentThread().interrupt();
+	            }
+	            hour++;
+	            hour = hour % 12;
+	            System.out.println(BongLib.bongText(hour));
+	        }
 		
 		} catch (ParseException e) {
 		}

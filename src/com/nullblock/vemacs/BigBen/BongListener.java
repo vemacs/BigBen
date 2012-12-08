@@ -1,6 +1,7 @@
 package com.nullblock.vemacs.BigBen;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 
 public class BongListener implements Listener{
@@ -9,6 +10,7 @@ public class BongListener implements Listener{
     public BongListener(BigBen BigBen) {
         plugin = BigBen;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + ">";
         int nextHour = BongLib.nextHour();
         int waitTime = BongLib.secondsUntilNextHour();
         try {
@@ -16,7 +18,7 @@ public class BongListener implements Listener{
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        Bukkit.broadcastMessage(BongLib.bongText(nextHour));
+        Bukkit.broadcastMessage(prefix + BongLib.bongText(nextHour));
         int hour = nextHour;
         for(;;){
             try {
@@ -26,8 +28,7 @@ public class BongListener implements Listener{
             }
             hour++;
             hour = hour % 12;
-            Bukkit.broadcastMessage(BongLib.bongText(hour));
+            Bukkit.broadcastMessage(prefix + BongLib.bongText(hour));
         }
     }
-
 }
