@@ -1,0 +1,7 @@
+name: BigBen
+main: com.nullblock.vemacs.BigBen.BigBen
+version: 1.0.0
+description: A clock that bongs every hour in GMT time
+author: vemacs
+authors:
+- TheCrittaC
