@@ -14,9 +14,10 @@ public class ChatListener implements Listener{
     }
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
+    	String prefix = plugin.getConfig().getString("prefix");
     	String eventMessage = event.getMessage().toLowerCase();
     	if(eventMessage.startsWith("bigben: ") && eventMessage.endsWith("??")){
-            new Thread(new ChatThread()).start();
+            new Thread(new ChatThread(prefix)).start();
     	}
 	}
 }

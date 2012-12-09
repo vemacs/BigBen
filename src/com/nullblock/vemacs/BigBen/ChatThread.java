@@ -7,11 +7,16 @@ import org.bukkit.Bukkit;
 
 public class ChatThread implements Runnable {
 
+	private String prefix;
+	
+	public ChatThread(String prefix){
+		this.prefix = prefix;
+	}
+	
 	@Override
 	public void run() {
-		BigBen BigBen = new BigBen();
-        String prefix = BigBen.getConfig().getString("prefix") + " " ;
-        Bukkit.broadcastMessage(prefix);
+		prefix = prefix + " ";
+		Bukkit.broadcastMessage(prefix);
         try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
