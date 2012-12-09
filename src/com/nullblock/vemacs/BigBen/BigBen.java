@@ -7,7 +7,7 @@ public final class BigBen extends JavaPlugin {
     @Override
     public void onEnable() {
     	  FileConfiguration config = this.getConfig();
-    	  config.addDefault("prefix", "<&6BigBen&r>");
+    	  config.addDefault("prefix", "<&6BigBen&F>");
     	  config.options().copyDefaults(true);
     	  saveConfig();
         new Thread(new BongThread(BongLib.textToColor(BigBen.this.getConfig().getString("prefix")))).start();

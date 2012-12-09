@@ -17,10 +17,11 @@ public class ChatThread implements Runnable {
 	@Override
 	public void run() {
 		prefix = prefix + " ";
-		Bukkit.broadcastMessage(prefix + response);
         try {
-			Thread.sleep(50);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 		}
+		Bukkit.broadcastMessage(prefix + response);
+		return;
 	}
 }
