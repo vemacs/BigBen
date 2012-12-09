@@ -10,37 +10,29 @@ What works perfectly
 
 -Correct number of bongs for UTC time
 
-What works
-----------
+-Answering to player responses with customizable values
 
--Answering to player responses with random hardcoded values
+-Customizable prefix
 
 What's not implemented
 ----------------------
 
 -Response overrides
 
--Customizable responses
-
--Customizable prefix
-
 -Permissions
+
+-URL title reader
+
+-Ability to spoof the bot
 
 Features
 --------
 
--Extremely low CPU usage with the same bonging method that the original BigBen uses
+-Uses the same bonging method that the original BigBen uses
 
 -Accurate bonging
 
 -Responds to player questions with the same format as the original BigBen (BigBen: *??)
-
--THREADING OMG
-
-Todo (performancewise)
-----------------------
-
--investigate the code to find out possible memory leaks
 
 Info
 -------
