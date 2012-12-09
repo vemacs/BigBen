@@ -25,10 +25,15 @@ public class BongThread implements Runnable {
         int hour = nextHour;
         for(;;){
             try {
-                Thread.sleep(3600000);
+                Thread.sleep(3590000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            try {
+				Thread.sleep(BongLib.secondsUntilNextHour() * 1000);
+			} catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+			}
             hour++;
             hour = hour % 12;
             Bukkit.broadcastMessage(prefix + BongLib.bongText(hour));
