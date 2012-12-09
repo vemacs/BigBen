@@ -1,13 +1,13 @@
 package com.nullblock.vemacs.BigBen;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 
 public class BongThread implements Runnable {
 	
 	@Override
     public void run() {
-        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + "> ";
+		BigBen BigBen = new BigBen();
+        String prefix = BigBen.getConfig().getString("prefix") + " " ;
         int nextHour = BongLib.nextHour();
         int waitTime = BongLib.secondsUntilNextHour();
         try {
@@ -15,6 +15,7 @@ public class BongThread implements Runnable {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+
         Bukkit.broadcastMessage(prefix + BongLib.bongText(nextHour));
         int hour = nextHour;
         for(;;){

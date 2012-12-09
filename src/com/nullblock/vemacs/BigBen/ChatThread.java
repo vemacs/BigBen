@@ -4,13 +4,13 @@
 package com.nullblock.vemacs.BigBen;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 
 public class ChatThread implements Runnable {
 
 	@Override
 	public void run() {
-        String prefix = "<" + ChatColor.GOLD + "BigBen" + ChatColor.RESET + "> ";
+		BigBen BigBen = new BigBen();
+        String prefix = BigBen.getConfig().getString("prefix") + " " ;
         try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
@@ -22,5 +22,6 @@ public class ChatThread implements Runnable {
         if(random >= 0.5){
         Bukkit.broadcastMessage(prefix + "Yes.");
         }
+        return;
 	}
 }
