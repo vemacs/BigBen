@@ -15,7 +15,12 @@ public class ChatThread implements Runnable {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
 		}
-		Bukkit.broadcastMessage(prefix + "No.");
+        double random = Math.random();
+        if(random < 0.5){
+        Bukkit.broadcastMessage(prefix + "No.");
+        }
+        if(random >= 0.5){
+        Bukkit.broadcastMessage(prefix + "Yes.");
+        }
 	}
-
 }
