@@ -1,14 +1,16 @@
 package com.nullblock.vemacs.BigBen;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BigBen extends JavaPlugin {
     @Override
     public void onEnable() {
-        this.saveDefaultConfig();
-        this.getConfig().set("prefix", "<&6BigBen&r>");
-        this.saveConfig();
-        new Thread(new BongThread()).start();
+    	  FileConfiguration config = this.getConfig();
+    	  config.addDefault("prefix", "<&6BigBen&r>");
+    	  config.options().copyDefaults(true);
+    	  saveConfig();
+        new Thread(new BongThread(BigBen.this.getConfig().getString("prefix"))).start();
         new ChatListener(this);
 
     }

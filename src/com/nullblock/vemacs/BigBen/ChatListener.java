@@ -12,7 +12,7 @@ public class ChatListener implements Listener{
         plugin = BigBen;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
     	String eventMessage = event.getMessage().toLowerCase();
     	if(eventMessage.startsWith("bigben: ") && eventMessage.endsWith("??")){

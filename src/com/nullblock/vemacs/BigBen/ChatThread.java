@@ -11,6 +11,7 @@ public class ChatThread implements Runnable {
 	public void run() {
 		BigBen BigBen = new BigBen();
         String prefix = BigBen.getConfig().getString("prefix") + " " ;
+        Bukkit.broadcastMessage(prefix);
         try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {

@@ -4,10 +4,15 @@ import org.bukkit.Bukkit;
 
 public class BongThread implements Runnable {
 	
+	private String prefix;
+	
+	public BongThread(String prefix){
+		this.prefix = prefix;
+	}
+	
 	@Override
     public void run() {
-		BigBen BigBen = new BigBen();
-        String prefix = BigBen.getConfig().getString("prefix") + " " ;
+		prefix = prefix + " ";
         int nextHour = BongLib.nextHour();
         int waitTime = BongLib.secondsUntilNextHour();
         try {
