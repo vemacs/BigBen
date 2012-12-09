@@ -10,7 +10,7 @@ public final class BigBen extends JavaPlugin {
     	  config.addDefault("prefix", "<&6BigBen&r>");
     	  config.options().copyDefaults(true);
     	  saveConfig();
-        new Thread(new BongThread(BigBen.this.getConfig().getString("prefix"))).start();
+        new Thread(new BongThread(BongLib.textToColor(BigBen.this.getConfig().getString("prefix")))).start();
         new ChatListener(this);
 
     }
