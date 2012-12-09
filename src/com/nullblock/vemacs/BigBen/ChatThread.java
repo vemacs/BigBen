@@ -19,9 +19,8 @@ public class ChatThread implements Runnable {
 		prefix = prefix + " ";
 		Bukkit.broadcastMessage(prefix + response);
         try {
-			Thread.sleep(100);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 		}
-        return;
 	}
 }

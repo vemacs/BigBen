@@ -84,6 +84,7 @@ public class BongLib {
 		text = text.replaceAll("&I", ChatColor.ITALIC+"");
 		text = text.replaceAll("&k", ChatColor.MAGIC+"");
 		text = text.replaceAll("&K", ChatColor.MAGIC+"");
+		text = text.replaceAll("&r", ChatColor.RESET+"");
 		return text;
 	}
 
