@@ -20,7 +20,7 @@ public class ChatListener implements Listener{
     	String prefix = plugin.getConfig().getString("prefix");
     	List<String> responselist = plugin.getConfig().getStringList("responses");
     	Random generator = new Random();
-    	int i = generator.nextInt(responselist.size() - 1);
+    	int i = generator.nextInt(responselist.size());
     	String eventMessage = event.getMessage().toLowerCase();
     	if(eventMessage.startsWith("bigben: ") && eventMessage.endsWith("??")){
             new Thread(new ChatThread(BongLib.textToColor(prefix), responselist.get(i))).start();
