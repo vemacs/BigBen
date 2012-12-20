@@ -1,5 +1,9 @@
 package com.nullblock.vemacs.BigBen;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,5 +92,22 @@ public class BongLib {
 		return text;
 	}
 
-	
+	public static BufferedReader getUrl(String toread) throws IOException {
+		return new BufferedReader(new InputStreamReader(
+				new URL(toread).openStream()));
+	}
+
+	public static String getUrlSimple(String uri) {
+		String inputLine = null;
+		try {
+			BufferedReader in = getUrl(uri);
+			String s = "";
+			while ((inputLine = in.readLine()) != null)
+				s += inputLine;
+			in.close();
+			return s;
+		} catch (IOException ex) {
+			return "";
+		}
+	}
 }

@@ -10,7 +10,6 @@ public final class BigBen extends JavaPlugin {
     public void onEnable() {
     	  FileConfiguration config = this.getConfig();
     	  config.addDefault("prefix", "<&6BigBen&r>");
-    	  config.addDefault("prefix", "<&6BigBen&r>");
     	  String[] responselist = {"Definitely.", "Absolutely not.", "Ask again later.", "Install Gentoo.", "Do you even lift?", "Don't count on it.", "Indeed."};
     	  this.getConfig().set("responses", Arrays.asList(responselist));
     	  config.options().copyDefaults(true);
