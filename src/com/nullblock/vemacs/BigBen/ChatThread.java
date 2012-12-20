@@ -7,11 +7,13 @@ import org.bukkit.Bukkit;
 public class ChatThread implements Runnable {
 
 	private String prefix;
-	private String response;
+	private String msg;
+	private Responder responser;
 	
-	public ChatThread(String prefix, String response){
+	public ChatThread(String prefix, Responder responder, String eventMessage) {
 		this.prefix = prefix;
-		this.response = response;
+		this.responser = responder;
+		this.msg = eventMessage;
 	}
 	
 	@Override
@@ -21,7 +23,8 @@ public class ChatThread implements Runnable {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
 		}
-		Bukkit.broadcastMessage(prefix + response);
+        
+		Bukkit.broadcastMessage(prefix + responser.getResponse(msg));
 		return;
 	}
 }
