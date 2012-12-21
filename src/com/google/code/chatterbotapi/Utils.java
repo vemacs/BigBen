@@ -19,7 +19,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
 
 /*
     chatter-bot-api

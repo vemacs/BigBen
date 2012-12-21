@@ -1,12 +1,10 @@
 package com.nullblock.vemacs.BigBen;
 
-import java.util.List;
-import java.util.Random;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.ChatColor;
 
 public class ChatListener implements Listener{
 	private BigBen plugin;
@@ -18,12 +16,15 @@ public class ChatListener implements Listener{
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
     	String prefix = plugin.getConfig().getString("prefix");
-    	List<String> responselist = plugin.getConfig().getStringList("responses");
-    	Random generator = new Random();
-    	int i = generator.nextInt(responselist.size());
     	String eventMessage = event.getMessage().toLowerCase();
-    	if(eventMessage.startsWith("bigben: ") && eventMessage.endsWith("??")){
-            new Thread(new ChatThread(BongLib.textToColor(prefix), responselist.get(i))).start();
+    	String player = ChatColor.stripColor(event.getPlayer().getDisplayName().replace("~", ""));
+    	if(eventMessage.startsWith("bigben: ")){
+            String message = eventMessage.substring(8, eventMessage.length());
+    		if(message.toLowerCase().contains("bigben")){
+    			message = message.toLowerCase();
+    			message = message.replace("bigben", "cleverbot");
+    		} 
+    		new Thread(new ChatThread(BongLib.textToColor(prefix), message, player)).start();
     	}
 	}
 }
