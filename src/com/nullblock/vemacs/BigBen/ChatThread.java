@@ -34,10 +34,7 @@ public class ChatThread implements Runnable {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 		}
-		if(response.toLowerCase().contains("cleverbot")){
-			response = response.toLowerCase();
-			response = response.replace("cleverbot", "BigBen");
-		}
+		response = response.replaceAll("(?i)cleverbot", "BigBen");
 		Bukkit.broadcastMessage(prefix + player + ": " + response);
 		return;
 	}
