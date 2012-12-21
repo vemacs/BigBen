@@ -24,7 +24,6 @@ public class ChatListener implements Listener{
     			message = message.toLowerCase();
     			message = message.replace("bigben", "cleverbot");
     		} 
-    		event.setMessage(event.getMessage().replace("(?i)cleverbot", "BigBen"));
     		new Thread(new ChatThread(BongLib.textToColor(prefix), message, player)).start();
     	}
 	}

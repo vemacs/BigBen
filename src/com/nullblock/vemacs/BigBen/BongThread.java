@@ -13,30 +13,16 @@ public class BongThread implements Runnable {
 	@Override
     public void run() {
 		prefix = prefix + " ";
-        int nextHour = BongLib.nextHour();
-        int waitTime = BongLib.secondsUntilNextHour();
-        try {
-            Thread.sleep(waitTime * 1000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
-        Bukkit.broadcastMessage(prefix + BongLib.bongText(nextHour));
-        int hour = nextHour;
+		int hour = 0;
         for(;;){
-            try {
-                Thread.sleep(3590000);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            try {
-				Thread.sleep(BongLib.secondsUntilNextHour() * 1000);
+        	try {
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
 			}
-            hour++;
-            hour = hour % 12;
+        	if(BongLib.secondsUntilNextHour() == 0 && Integer.parseInt(BongLib.getTimeString().substring(0,2)) != hour){
+        	hour = Integer.parseInt(BongLib.getTimeString().substring(0,2));
             Bukkit.broadcastMessage(prefix + BongLib.bongText(hour));
         }
     }
+}
 }
