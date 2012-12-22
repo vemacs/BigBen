@@ -6,11 +6,11 @@ An in-progress clone for BigBen, but for Bukkit. It's written completely from sc
 What works perfectly
 --------------------
 
--Bonging every hour (defined explicitly as 3600000 milliseconds in the code) (has been tested)
+-Bonging every hour
 
 -Correct number of bongs for UTC time
 
--Answering to player responses with customizable values
+-Answering to player responses with CleverBot backend
 
 -Customizable prefix
 
@@ -31,8 +31,6 @@ Features
 -Uses the same bonging method that the original BigBen uses
 
 -Accurate bonging
-
--Responds to player questions with the same format as the original BigBen (BigBen: *??)
 
 Info
 -------
