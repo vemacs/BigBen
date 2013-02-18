@@ -14,11 +14,13 @@ public class ChatThread implements Runnable {
 	private String prefix;
 	private String input;
 	private String player;
+	private ChatterBotSession bot1session;
 	
-	public ChatThread(String prefix, String input, String player){
+	public ChatThread(String prefix, String input, String player, ChatterBotSession bot1session){
 		this.prefix = prefix;
 		this.input = input;
 		this.player = player;
+		this.bot1session = bot1session;
 	}
 	
 	@Override
@@ -26,7 +28,7 @@ public class ChatThread implements Runnable {
 		prefix = prefix + " ";
 		String response = null; 
 		try {        
-	        response = BigBen.bot1session.think(input);
+	        response = bot1session.think(input);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 		}
