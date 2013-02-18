@@ -26,7 +26,7 @@ public class ChatThread implements Runnable {
 		prefix = prefix + " ";
 		String response = null; 
 		try {        
-	        response = ConnectionThread.bot1session.think(input);
+	        response = BigBen.bot1session.think(input);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 		}
