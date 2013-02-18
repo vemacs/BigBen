@@ -11,8 +11,8 @@ public final class BigBen extends JavaPlugin {
     	  config.options().copyDefaults(true);
     	  saveConfig();
           new Thread(new BongThread(BongLib.textToColor(BigBen.this.getConfig().getString("prefix")))).start();
+          new Thread(new ConnectionThread()).start();
           new ChatListener(this);
-
     }
     @Override
     public void onDisable() {        
