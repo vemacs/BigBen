@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import main.java.com.nullblock.vemacs.BigBen.BongLib;
+import com.nullblock.vemacs.BigBen.BongLib;
 
 public class BigBenTest {
 	public static void main(String[] args) {

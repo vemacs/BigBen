@@ -20,7 +20,6 @@ public class ChatThread implements Runnable {
 		this.bot1session = bot1session;
 	}
 	
-	@Override
 	public void run() {
 		prefix = prefix + " ";
 		String response = null; 

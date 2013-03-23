@@ -2,4 +2,5 @@ bin/*
 .settings/*
 .project
 .classpath
-ShortifyTests.properties
+target/*
+.git/*

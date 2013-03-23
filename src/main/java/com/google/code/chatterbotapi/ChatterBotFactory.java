@@ -1,6 +1,4 @@
-package com.google.code.chatterbotapi.test;
-
-import com.google.code.chatterbotapi.*;
+package com.google.code.chatterbotapi;
 
 /*
     chatter-bot-api
@@ -19,26 +17,24 @@ import com.google.code.chatterbotapi.*;
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-public class ChatterBotApiTest {
-    
-    public static void main(String[] args) throws Exception {
-        ChatterBotFactory factory = new ChatterBotFactory();
+public class ChatterBotFactory {
 
-        ChatterBot bot1 = factory.create(ChatterBotType.CLEVERBOT);
-        ChatterBotSession bot1session = bot1.createSession();
+    public ChatterBot create(ChatterBotType type) throws Exception {
+        return create(type, null);
+    }
 
-        ChatterBot bot2 = factory.create(ChatterBotType.CLEVERBOT);
-        ChatterBotSession bot2session = bot2.createSession();
-
-        String s = "Is racorac gay?";
-        while (true) {
-
-            System.out.println("bot1> " + s);
-
-            s = bot2session.think(s);
-            System.out.println("bot2> " + s);
-
-            s = bot1session.think(s);
+    public ChatterBot create(ChatterBotType type, Object arg) throws Exception {
+        switch (type) {
+            case CLEVERBOT:
+                return new Cleverbot("http://cleverbot.com/webservicemin");
+            case JABBERWACKY:
+                return new Cleverbot("http://jabberwacky.com/webservicemin");
+            case PANDORABOTS:
+                if (arg == null) {
+                    throw new Exception("PANDORABOTS needs a botid arg");
+                }
+                return new Pandorabots(arg.toString());
         }
+        return null;
     }
 }
