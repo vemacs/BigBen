@@ -29,6 +29,7 @@ public class ChatThread implements Runnable {
 			// TODO Auto-generated catch block
 		}
 		response = response.replaceAll("(?i)cleverbot", "BigBen");
+		response = BongLib.replaceAcutesHTML(response);
 		Bukkit.broadcastMessage(prefix + player + ": " + response);
 		return;
 	}

@@ -51,41 +51,42 @@ public class BongLib {
 		return text;
 	}
 	
-	public static String textToColor(String text)
-	{
-		text = text.replaceAll("&0", ChatColor.BLACK+"");
-		text = text.replaceAll("&1", ChatColor.DARK_BLUE+"");
-		text = text.replaceAll("&2", ChatColor.DARK_GREEN+"");
-		text = text.replaceAll("&3", ChatColor.DARK_AQUA+"");
-		text = text.replaceAll("&4", ChatColor.DARK_RED+"");
-		text = text.replaceAll("&5", ChatColor.DARK_PURPLE+"");
-		text = text.replaceAll("&6", ChatColor.GOLD+"");
-		text = text.replaceAll("&7", ChatColor.GRAY+"");
-		text = text.replaceAll("&8", ChatColor.DARK_GRAY+"");
-		text = text.replaceAll("&9", ChatColor.BLUE+"");
-		text = text.replaceAll("&A", ChatColor.GREEN+"");
-		text = text.replaceAll("&B", ChatColor.AQUA+"");
-		text = text.replaceAll("&C", ChatColor.RED+"");
-		text = text.replaceAll("&D", ChatColor.LIGHT_PURPLE+"");
-		text = text.replaceAll("&E", ChatColor.YELLOW+"");
-		text = text.replaceAll("&F", ChatColor.WHITE+"");
-		text = text.replaceAll("&a", ChatColor.GREEN+"");
-		text = text.replaceAll("&b", ChatColor.AQUA+"");
-		text = text.replaceAll("&c", ChatColor.RED+"");
-		text = text.replaceAll("&d", ChatColor.LIGHT_PURPLE+"");
-		text = text.replaceAll("&e", ChatColor.YELLOW+"");
-		text = text.replaceAll("&u", ChatColor.UNDERLINE+"");
-		text = text.replaceAll("&U", ChatColor.UNDERLINE+"");
-		text = text.replaceAll("&n", ChatColor.BOLD+"");
-		text = text.replaceAll("&N", ChatColor.BOLD+"");
-		text = text.replaceAll("&o", ChatColor.ITALIC+"");
-		text = text.replaceAll("&O", ChatColor.ITALIC+"");
-		text = text.replaceAll("&i", ChatColor.ITALIC+"");
-		text = text.replaceAll("&I", ChatColor.ITALIC+"");
-		text = text.replaceAll("&k", ChatColor.MAGIC+"");
-		text = text.replaceAll("&K", ChatColor.MAGIC+"");
-		text = text.replaceAll("&r", ChatColor.RESET+"");
-		return text;
+	public static String textToColor(String text) {
+	//copied from http://forums.bukkit.org/threads/simple-colors-parsing-method.32058/#post-1251988
+        char[] chrarray = text.toCharArray();
+ 
+        for (int index = 0; index < chrarray.length; index ++) {
+            char chr = chrarray[index];
+            if (chr != '&') {
+                continue;
+            }
+ 
+            if ((index + 1) == chrarray.length) {
+                break;
+            }
+             char forward = chrarray[index + 1];
+            if ((forward >= '0' && forward <= '9') || (forward >= 'a' && forward <= 'f') || (forward >= 'k' && forward <= 'r')) {
+                chrarray[index] = '\u00A7';
+            }
+        }
+         return new String(chrarray);
+    }
+	
+	public static String replaceAcutesHTML(String str) {
+
+		str = str.replaceAll("&aacute;","á");
+		str = str.replaceAll("&eacute;","é");
+		str = str.replaceAll("&iacute;","í");
+		str = str.replaceAll("&oacute;","ó");
+		str = str.replaceAll("&uacute;","ú");
+		str = str.replaceAll("&Aacute;","Á");
+		str = str.replaceAll("&Eacute;","É");
+		str = str.replaceAll("&Iacute;","Í");
+		str = str.replaceAll("&Oacute;","Ó");
+		str = str.replaceAll("&Uacute;","Ú");
+		str = str.replaceAll("&ntilde;","ñ");
+		str = str.replaceAll("&Ntilde;","Ñ");
+		return str;
 	}
 
 	
