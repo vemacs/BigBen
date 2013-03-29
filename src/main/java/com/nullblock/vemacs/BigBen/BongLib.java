@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.ChatColor;
 
 public class BongLib {
@@ -74,18 +75,8 @@ public class BongLib {
 	
 	public static String replaceAcutesHTML(String str) {
 
-		str = str.replaceAll("&aacute;","á");
-		str = str.replaceAll("&eacute;","é");
-		str = str.replaceAll("&iacute;","í");
-		str = str.replaceAll("&oacute;","ó");
-		str = str.replaceAll("&uacute;","ú");
-		str = str.replaceAll("&Aacute;","Á");
-		str = str.replaceAll("&Eacute;","É");
-		str = str.replaceAll("&Iacute;","Í");
-		str = str.replaceAll("&Oacute;","Ó");
-		str = str.replaceAll("&Uacute;","Ú");
-		str = str.replaceAll("&ntilde;","ñ");
-		str = str.replaceAll("&Ntilde;","Ñ");
+		str = StringEscapeUtils.unescapeHtml(str).replaceAll("[^\\x20-\\x7e]", "");
+
 		return str;
 	}
 
