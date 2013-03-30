@@ -30,6 +30,11 @@ public class ChatThread implements Runnable {
 		}
 		response = response.replaceAll("(?i)nickie", "BigBen");
 		response = BongLib.replaceAcutesHTML(response);
+		response = BongLib.cleanUp(response);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+		}
 		Bukkit.broadcastMessage(prefix + player + ": " + response);
 		return;
 	}

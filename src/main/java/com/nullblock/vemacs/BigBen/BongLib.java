@@ -79,6 +79,19 @@ public class BongLib {
 
 		return str;
 	}
+	
+	public static String cleanUp(String str){
+		str = str.replace("<em>", ChatColor.ITALIC.toString());
+		str = str.replace("<b>", ChatColor.BOLD.toString());
+		str = str.replace("<u>", ChatColor.UNDERLINE.toString());
+		str = str.replace("</em>", ChatColor.RESET.toString());
+		str = str.replace("</b>", ChatColor.RESET.toString());
+		str = str.replace("</u>", ChatColor.RESET.toString());
+		str = str.replace("<br>", "\n");
+		String pattern = "\\<.*?\\>.*?\\<\\/.*?\\>";
+		str = str.replaceAll(pattern, "");
+		return str;
+	}
 
 	
 }
