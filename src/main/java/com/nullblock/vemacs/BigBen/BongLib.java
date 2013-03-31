@@ -87,6 +87,8 @@ public class BongLib {
 		str = str.replace("</em>", ChatColor.RESET.toString());
 		str = str.replace("</b>", ChatColor.RESET.toString());
 		str = str.replace("</u>", ChatColor.RESET.toString());
+		str = str.replace("</center>", "");
+		str = str.replace("<center>", "");
 		str = str.replace("<br>", "\n");
 		String pattern = "\\<.*?\\>.*?\\<\\/.*?\\>";
 		str = str.replaceAll(pattern, "");
