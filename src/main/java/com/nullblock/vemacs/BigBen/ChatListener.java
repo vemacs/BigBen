@@ -49,6 +49,7 @@ public class ChatListener implements Listener{
     	String response = "";
     	int number = 0;
     	number = 0 + (int)(Math.random() * ((2 - 0) + 1));
+    	prefix = BongLib.textToColor(prefix);
     	if( number == 0 ) {
     		response = "wb " + playername;
     	}
