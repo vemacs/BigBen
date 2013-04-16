@@ -28,7 +28,7 @@ public class ChatThread implements Runnable {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 		}
-		response = response.replaceAll("(?i)zoe", "BigBen");
+		response = response.replaceAll("(?i)bella", "BigBen");
 		response = BongLib.replaceAcutesHTML(response);
 		response = BongLib.cleanUp(response);
 		try {

@@ -25,7 +25,7 @@ public class ChatListener implements Listener{
         ChatterBotFactory factory = new ChatterBotFactory();
         ChatterBot bot1;
 		try {
-			bot1 = factory.create(ChatterBotType.PANDORABOTS, "83e198ed1e345ab2");
+			bot1 = factory.create(ChatterBotType.PANDORABOTS, "b8e200d62e3459ea");
 			bot1session = bot1.createSession();
 		} catch (Exception e1) {
 		}
@@ -37,7 +37,7 @@ public class ChatListener implements Listener{
     	String player = ChatColor.stripColor(event.getPlayer().getDisplayName().replace("~", ""));
     	if(eventMessage.startsWith("bigben: ")){
             String message = eventMessage.substring(8, eventMessage.length());
-    			message = message.replace("(?i)bigben", "Zoe");
+    			message = message.replace("(?i)bigben", "Bella");
     		new Thread(new ChatThread(BongLib.textToColor(prefix), message, player, this.bot1session)).start();
     	}
 	}
