@@ -44,7 +44,7 @@ class Pandorabots implements ChatterBot {
         public ChatterBotThought think(ChatterBotThought thought) throws Exception {
             vars.put("input", thought.getText());
             
-            String response = Utils.post("http://www.pandorabots.com/pandora/talk-xml", vars);
+            String response = Utils.post("http://sheepridge.pandorabots.com/pandora/talk-xml", vars);
             
             ChatterBotThought responseThought = new ChatterBotThought();
             
