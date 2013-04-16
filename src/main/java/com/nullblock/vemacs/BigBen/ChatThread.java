@@ -24,7 +24,7 @@ public class ChatThread implements Runnable {
 		prefix = prefix + " ";
 		String response = null; 
 		try {        
-	        response = bot1session.think(input);
+	        response = bot1session.think(input).trim();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 		}
