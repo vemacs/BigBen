@@ -13,7 +13,7 @@ public final class BigBen extends JavaPlugin {
 		config.options().copyDefaults(true);
 		saveConfig();
 		BukkitTask bong = new BongThread(config.getString("prefix")).runTaskTimer(BongLib
-				.getBigBen(), 0, 10);
+				.getBigBen(), 0, 15);
 		new ChatListener(this);
 	}
 
