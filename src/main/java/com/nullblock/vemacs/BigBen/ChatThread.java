@@ -1,8 +1,7 @@
-//sleep the chat thread in order to get the response to appear after the message is sent
-
 package com.nullblock.vemacs.BigBen;
 
 import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitTask;
 
 import com.google.code.chatterbotapi.ChatterBotSession;
 
@@ -27,16 +26,12 @@ public class ChatThread implements Runnable {
 		try {
 			response = bot1session.think(input).trim();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 		}
 		response = response.replaceAll("(?i)zoe", "BigBen");
 		response = BongLib.replaceAcutesHTML(response);
 		response = BongLib.cleanUp(response);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-		}
-		Bukkit.broadcastMessage(prefix + player + ": " + response);
-		return;
+		String message = player + ": " + response;
+		BukkitTask bongtask = new ChatRunnable(prefix, message).runTaskLater(BongLib
+				.getBigBen(), 10);
 	}
 }
