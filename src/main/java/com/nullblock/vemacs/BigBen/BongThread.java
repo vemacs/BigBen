@@ -22,7 +22,6 @@ public class BongThread implements Runnable {
 					.parseInt(BongLib.getTimeString().substring(0, 2)) != hour) {
 				hour = Integer
 						.parseInt(BongLib.getTimeString().substring(0, 2));
-				String message = prefix + BongLib.bongText(hour);
 				BukkitTask bongtask = new ChatRunnable(prefix, BongLib.bongText(hour))
 				.runTask(BongLib.getBigBen());
 			}
