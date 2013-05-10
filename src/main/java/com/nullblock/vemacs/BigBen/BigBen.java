@@ -6,7 +6,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 public final class BigBen extends JavaPlugin {
 	
-	public static int lasthour = 0;
+	public static int lasthour = -1;
 
 	@Override
 	public void onEnable() {
