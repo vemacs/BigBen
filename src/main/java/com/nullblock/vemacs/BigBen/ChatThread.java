@@ -31,7 +31,7 @@ public class ChatThread implements Runnable {
 		response = BongLib.replaceAcutesHTML(response);
 		response = BongLib.cleanUp(response);
 		String message = player + ": " + response;
-		BukkitTask bongtask = new ChatRunnable(prefix, message).runTaskLater(BongLib
+		BukkitTask responsetask = new ChatRunnable(prefix, message).runTaskLater(BongLib
 				.getBigBen(), 10);
 	}
 }
