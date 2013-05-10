@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public final class BigBen extends JavaPlugin {
+	
+	public static int lasthour = 0;
 
 	@Override
 	public void onEnable() {
@@ -13,7 +15,7 @@ public final class BigBen extends JavaPlugin {
 		config.options().copyDefaults(true);
 		saveConfig();
 		BukkitTask bong = new BongThread(config.getString("prefix")).runTaskTimer(BongLib
-				.getBigBen(), 0, 15);
+				.getBigBen(), 0, 10);
 		new ChatListener(this);
 	}
 

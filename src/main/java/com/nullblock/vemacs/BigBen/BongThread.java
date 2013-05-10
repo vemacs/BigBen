@@ -12,11 +12,12 @@ public class BongThread extends BukkitRunnable {
 	}
 
 	public void run() {
-		if (BongLib.secondsUntilNextHour() == 0) {
+		int hour = Integer.parseInt(BongLib.getTimeString().substring(0, 2));
+		if (BongLib.secondsUntilNextHour() == 0 && hour != BigBen.lasthour) {
 			prefix = BongLib.textToColor(prefix);
-			int hour = Integer.parseInt(BongLib.getTimeString().substring(0, 2));
 			BukkitTask bongtask = new ChatRunnable(prefix,
 					BongLib.bongText(hour)).runTask(BongLib.getBigBen());
+			BigBen.lasthour = hour;
 		}
 	}
 }
