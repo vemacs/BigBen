@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.Plugin;
 
 public class BongLib {
 
@@ -93,6 +95,11 @@ public class BongLib {
 		String pattern = "\\<.*?\\>.*?\\<\\/.*?\\>";
 		str = str.replaceAll(pattern, "");
 		return str;
+	}
+	
+	public static Plugin getBigBen() {
+		Plugin bigben = Bukkit.getServer().getPluginManager().getPlugin("BigBen");
+		return bigben;
 	}
 
 	
