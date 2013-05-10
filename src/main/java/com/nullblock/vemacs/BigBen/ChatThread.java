@@ -21,7 +21,6 @@ public class ChatThread implements Runnable {
 	}
 
 	public void run() {
-		prefix = prefix + " ";
 		String response = null;
 		try {
 			response = bot1session.think(input).trim();
