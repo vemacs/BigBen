@@ -1,9 +1,8 @@
 package com.nullblock.vemacs.BigBen;
 
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-public class BongThread extends BukkitRunnable {
+public class BongThread implements Runnable {
 
 	private String prefix;
 
@@ -12,12 +11,20 @@ public class BongThread extends BukkitRunnable {
 	}
 
 	public void run() {
-		int hour = Integer.parseInt(BongLib.getTimeString().substring(0, 2));
-		if (BongLib.secondsUntilNextHour() == 0 && hour != BigBen.lasthour) {
-			prefix = BongLib.textToColor(prefix);
-			BukkitTask bongtask = new ChatRunnable(prefix,
-					BongLib.bongText(hour)).runTask(BongLib.getBigBen());
-			BigBen.lasthour = hour;
+		int hour = -1;
+		for (;;) {
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+			}
+			if (BongLib.secondsUntilNextHour() == 0
+					&& Integer
+					.parseInt(BongLib.getTimeString().substring(0, 2)) != hour) {
+				hour = Integer
+						.parseInt(BongLib.getTimeString().substring(0, 2));
+				BukkitTask bongtask = new ChatRunnable(prefix,
+						BongLib.bongText(hour)).runTask(BongLib.getBigBen());
+			}
 		}
 	}
 }
