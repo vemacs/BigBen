@@ -1,9 +1,8 @@
 package com.nullblock.vemacs.BigBen;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -48,24 +47,27 @@ public class ChatListener implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		String playername = event.getPlayer().getName();
-		String prefix = plugin.getConfig().getString("prefix");
-		String response = "";
-		int number = 0;
-		number = 0 + (int) (Math.random() * ((2 - 0) + 1));
-		prefix = BongLib.textToColor(prefix);
-		if (number == 0) {
-			response = "wb " + playername;
+		Player player = event.getPlayer();
+		if (player.hasPlayedBefore()) {
+			String playername = event.getPlayer().getName();
+			String prefix = plugin.getConfig().getString("prefix");
+			String response = "";
+			int number = 0;
+			number = 0 + (int) (Math.random() * ((2 - 0) + 1));
+			prefix = BongLib.textToColor(prefix);
+			if (number == 0) {
+				response = "wb " + playername;
+			}
+			if (number == 1) {
+				response = "welcome back " + playername;
+			}
+			if (number == 2) {
+				response = "whalecum back " + playername;
+			}
+			Bukkit.getServer()
+					.getScheduler()
+					.runTaskLater(BongLib.getBigBen(),
+							new ChatRunnable(prefix, response), 3);
 		}
-		if (number == 1) {
-			response = "welcome back " + playername;
-		}
-		if (number == 2) {
-			response = "whalecum back " + playername;
-		}
-		Bukkit.getServer()
-				.getScheduler()
-				.runTaskLater(BongLib.getBigBen(),
-						new ChatRunnable(prefix, response), 3);
 	}
 }
