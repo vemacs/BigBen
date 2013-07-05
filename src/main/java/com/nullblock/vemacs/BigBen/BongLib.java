@@ -94,6 +94,7 @@ public class BongLib {
 		str = str.replace("<br>", "\n");
 		String pattern = "\\<.*?\\>.*?\\<\\/.*?\\>";
 		str = str.replaceAll(pattern, "");
+		str = str.replaceAll("\\s+", " ").trim();
 		return str;
 	}
 	
