@@ -1,6 +1,5 @@
 package com.nullblock.vemacs.BigBen;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BigBen extends JavaPlugin {
@@ -9,8 +8,6 @@ public final class BigBen extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        FileConfiguration config = this.getConfig();
-        config.addDefault("prefix", "<&6BigBen&r>");
         saveDefaultConfig();
         hour = -1;
         this.getServer().getScheduler().runTaskTimerAsynchronously(this,
