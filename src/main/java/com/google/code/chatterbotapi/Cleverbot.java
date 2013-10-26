@@ -30,7 +30,7 @@ class Cleverbot implements ChatterBot {
     public ChatterBotSession createSession() {
         return new Session();
     }
-    
+
     private class Session implements ChatterBotSession {
         private final Map<String, String> vars;
 
@@ -43,7 +43,7 @@ class Cleverbot implements ChatterBot {
             vars.put("islearning", "1");
             vars.put("cleanslate", "false");
         }
-        
+
         public ChatterBotThought think(ChatterBotThought thought) throws Exception {
             vars.put("stimulus", thought.getText());
 
@@ -53,9 +53,9 @@ class Cleverbot implements ChatterBot {
             vars.put("icognocheck", formDataDigest);
 
             String response = Utils.post(url, vars);
-            
+
             String[] responseValues = response.split("\r");
-            
+
             //vars.put("", Utils.stringAtIndex(responseValues, 0)); ??
             vars.put("sessionid", Utils.stringAtIndex(responseValues, 1));
             vars.put("logurl", Utils.stringAtIndex(responseValues, 2));
@@ -80,11 +80,11 @@ class Cleverbot implements ChatterBot {
             vars.put("lineChoicesAbbrev", Utils.stringAtIndex(responseValues, 21));
             vars.put("typingData", Utils.stringAtIndex(responseValues, 22));
             vars.put("divert", Utils.stringAtIndex(responseValues, 23));
-            
+
             ChatterBotThought responseThought = new ChatterBotThought();
 
             responseThought.setText(Utils.stringAtIndex(responseValues, 16));
-            
+
             return responseThought;
         }
 

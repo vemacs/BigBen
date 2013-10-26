@@ -5,19 +5,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BigBen extends JavaPlugin {
 
-	@Override
-	public void onEnable() {
-		FileConfiguration config = this.getConfig();
-		config.addDefault("prefix", "<&6BigBen&r>");
-		config.options().copyDefaults(true);
-		saveConfig();
-		new Thread(new BongThread(BongLib.textToColor(BigBen.this.getConfig()
-				.getString("prefix")))).start();
-		new ChatListener(this);
-	}
+    public static int hour;
 
-	@Override
-	public void onDisable() {
+    @Override
+    public void onEnable() {
+        FileConfiguration config = this.getConfig();
+        config.addDefault("prefix", "<&6BigBen&r>");
+        saveDefaultConfig();
+        hour = -1;
+        this.getServer().getScheduler().runTaskTimerAsynchronously(this,
+                new BongThread(BongLib.textToColor(getConfig().getString("prefix"))), 0, 10);
+        new ChatListener(this);
+    }
 
-	}
+    @Override
+    public void onDisable() {
+
+    }
+
 }

@@ -31,7 +31,7 @@ class Pandorabots implements ChatterBot {
     public ChatterBotSession createSession() {
         return new Session();
     }
-    
+
     private class Session implements ChatterBotSession {
         private final Map<String, String> vars;
 
@@ -40,16 +40,16 @@ class Pandorabots implements ChatterBot {
             vars.put("botid", botid);
             vars.put("custid", new UID().toString());
         }
-        
+
         public ChatterBotThought think(ChatterBotThought thought) throws Exception {
             vars.put("input", thought.getText());
-            
+
             String response = Utils.post("http://sheepridge.pandorabots.com/pandora/talk-xml", vars);
-            
+
             ChatterBotThought responseThought = new ChatterBotThought();
-            
+
             responseThought.setText(Utils.xPathSearch(response, "//result/that/text()"));
-            
+
             return responseThought;
         }
 

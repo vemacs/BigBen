@@ -1,6 +1,9 @@
 package com.nullblock.vemacs.BigBen;
 
-import org.bukkit.Bukkit;
+import com.google.code.chatterbotapi.ChatterBot;
+import com.google.code.chatterbotapi.ChatterBotFactory;
+import com.google.code.chatterbotapi.ChatterBotSession;
+import com.google.code.chatterbotapi.ChatterBotType;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,65 +12,59 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.google.code.chatterbotapi.ChatterBot;
-import com.google.code.chatterbotapi.ChatterBotFactory;
-import com.google.code.chatterbotapi.ChatterBotSession;
-import com.google.code.chatterbotapi.ChatterBotType;
-
 public class ChatListener implements Listener {
-	private BigBen plugin;
-	private ChatterBotSession bot1session;
 
-	public ChatListener(BigBen BigBen) {
-		plugin = BigBen;
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-		ChatterBotFactory factory = new ChatterBotFactory();
-		ChatterBot bot1;
-		try {
-			bot1 = factory.create(ChatterBotType.PANDORABOTS,
-					"83e198ed1e345ab2");
-			bot1session = bot1.createSession();
-		} catch (Exception e1) {
-		}
-	}
+    private BigBen plugin;
+    private ChatterBotSession bot1session;
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		String prefix = plugin.getConfig().getString("prefix");
-		String eventMessage = event.getMessage().toLowerCase();
-		String player = ChatColor.stripColor(event.getPlayer().getDisplayName()
-				.replace("~", ""));
-		if (eventMessage.startsWith("bigben: ")) {
-			String message = eventMessage.substring(8, eventMessage.length());
-			message = message.replace("(?i)bigben", "Zoe");
-			new Thread(new ChatThread(BongLib.textToColor(prefix), message,
-					player, this.bot1session)).start();
-		}
-	}
+    public ChatListener(BigBen BigBen) {
+        plugin = BigBen;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        ChatterBotFactory factory = new ChatterBotFactory();
+        ChatterBot bot1;
+        try {
+            bot1 = factory.create(ChatterBotType.PANDORABOTS, "83e198ed1e345ab2");
+            bot1session = bot1.createSession();
+        } catch (Exception ignored) {
+        }
+    }
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
-		if (player.hasPlayedBefore()) {
-			String playername = event.getPlayer().getName();
-			String prefix = plugin.getConfig().getString("prefix");
-			String response = "";
-			int number = 0;
-			number = 0 + (int) (Math.random() * ((2 - 0) + 1));
-			prefix = BongLib.textToColor(prefix);
-			if (number == 0) {
-				response = "wb " + playername;
-			}
-			if (number == 1) {
-				response = "welcome back " + playername;
-			}
-			if (number == 2) {
-				response = "whalecum back " + playername;
-			}
-			Bukkit.getServer()
-					.getScheduler()
-					.runTaskLater(BongLib.getBigBen(),
-							new ChatRunnable(prefix, response), 3);
-		}
-	}
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        String prefix = plugin.getConfig().getString("prefix");
+        String eventMessage = event.getMessage().toLowerCase();
+        String player = ChatColor.stripColor(event.getPlayer().getDisplayName().replace("~", ""));
+        if (eventMessage.startsWith("bigben: ")) {
+            String message = eventMessage.substring(8, eventMessage.length());
+            message = message.replace("(?i)bigben", "Zoe");
+            plugin.getServer().getScheduler().runTaskAsynchronously(plugin,
+                    new ChatThread(BongLib.textToColor(prefix), message, player, this.bot1session));
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPlayedBefore()) {
+            String playername = event.getPlayer().getName();
+            String prefix = plugin.getConfig().getString("prefix");
+            String response = "";
+            int number;
+            number = (int) (Math.random() * ((2) + 1));
+            prefix = BongLib.textToColor(prefix);
+            switch (number) {
+                case 0:
+                    response = "wb " + playername;
+                    break;
+                case 1:
+                    response = "welcome back " + playername;
+                    break;
+                case 2:
+                    response = "whalecum back " + playername;
+                    break;
+            }
+            plugin.getServer().getScheduler().runTaskLater(plugin, new ChatRunnable(prefix, response), 3);
+        }
+    }
+
 }

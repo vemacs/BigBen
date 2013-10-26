@@ -1,17 +1,6 @@
 package com.google.code.chatterbotapi;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.math.BigInteger;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.security.MessageDigest;
-import java.util.Map;
+import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,8 +8,13 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Document;
+import java.io.*;
+import java.math.BigInteger;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.util.Map;
 
 /*
     chatter-bot-api
@@ -40,7 +34,7 @@ import org.w3c.dom.Document;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 class Utils {
-    
+
     public static String parametersToWWWFormURLEncoded(Map<String, String> parameters) throws Exception {
         StringBuilder s = new StringBuilder();
         for (Map.Entry<String, String> parameter : parameters.entrySet()) {
@@ -53,14 +47,14 @@ class Utils {
         }
         return s.toString();
     }
-    
+
     public static String md5(String input) throws Exception {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         md5.update(input.getBytes("UTF-8"));
         BigInteger hash = new BigInteger(1, md5.digest());
         return String.format("%1$032X", hash);
     }
-    
+
     public static String post(String url, Map<String, String> parameters) throws Exception {
         URLConnection connection = new URL(url).openConnection();
         connection.setDoOutput(true);
@@ -79,7 +73,7 @@ class Utils {
         r.close();
         return w.toString();
     }
-    
+
     public static String xPathSearch(String input, String expression) throws Exception {
         DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         XPath xPath = XPathFactory.newInstance().newXPath();
@@ -87,7 +81,7 @@ class Utils {
         Document document = documentBuilder.parse(new ByteArrayInputStream(input.getBytes("UTF-8")));
         return (String) xPathExpression.evaluate(document, XPathConstants.STRING);
     }
-    
+
     public static String stringAtIndex(String[] strings, int index) {
         if (index >= strings.length) return "";
         return strings[index];

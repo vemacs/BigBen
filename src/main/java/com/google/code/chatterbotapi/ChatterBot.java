@@ -18,6 +18,6 @@ package com.google.code.chatterbotapi;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 public interface ChatterBot {
-    
+
     ChatterBotSession createSession();
 }
