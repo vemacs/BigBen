@@ -48,9 +48,8 @@ public class ChatListener implements Listener {
         if (player.hasPlayedBefore()) {
             String playername = event.getPlayer().getName();
             String prefix = plugin.getConfig().getString("prefix");
-            String response = "";
-            int number;
-            number = (int) (Math.random() * ((2) + 1));
+            String response = null;
+            int number = (int) (Math.random() * ((2) + 1));
             prefix = BongLib.textToColor(prefix);
             switch (number) {
                 case 0:

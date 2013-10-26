@@ -33,4 +33,5 @@ public class ChatThread extends BukkitRunnable {
         Plugin bigBen = BongLib.getBigBen();
         bigBen.getServer().getScheduler().runTaskLater(bigBen, new ChatRunnable(prefix, message), 10);
     }
+
 }
