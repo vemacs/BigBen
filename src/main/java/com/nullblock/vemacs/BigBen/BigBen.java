@@ -29,8 +29,8 @@ public final class BigBen extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	    reloadConfig();
         load();
-        reloadConfig();
         sender.sendMessage(ChatColor.GREEN + "BigBen has been reloaded.");
         return true;
     }
