@@ -37,7 +37,7 @@ public class ChatListener implements Listener {
             String message = eventMessage.substring(8, eventMessage.length());
             message = message.replace("(?i)bigben", "Zoe");
             new ChatThread(message, player, this.bot1session)
-                .runTaskAsynchronously(BigBen.getInstance());
+                    .runTaskAsynchronously(BigBen.getInstance());
         }
     }
 

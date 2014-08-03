@@ -1,6 +1,8 @@
 package com.nullblock.vemacs.bigben;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -19,10 +21,17 @@ public final class BigBen extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
     }
 
-    public void load() {
+    private void load() {
         prefix = getConfig().getString("prefix", "BigBen: ");
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         welcomes = getConfig().getStringList("welcomes");
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        load();
+        sender.sendMessage(ChatColor.GREEN + "BigBen has been reloaded.");
+        return true;
     }
 
     public static List<String> getWelcomes() {

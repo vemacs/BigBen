@@ -1,7 +1,14 @@
 name: BigBen
-main: com.nullblock.vemacs.BigBen.BigBen
+main: com.nullblock.vemacs.bigben.BigBen
 version: 1.3.0
 description: A clock that bongs every hour in GMT time, and can respond to questions in a magic-8-ball style.
 author: vemacs
-authors:
-- TheCrittaC
+commands:
+    bbreload:
+        description: Reloads BigBen.
+        permission: bigben.reload
+        usage: /bbreload
+permissions:
+    bigben.reload:
+        description: lets you reload BigBen
+        default: op

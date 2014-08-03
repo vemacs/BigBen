@@ -9,7 +9,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class BongLib {
-    private BongLib() {}
+    private BongLib() {
+    }
 
     public static String getTimeString() {
         SimpleDateFormat timeUTC = new SimpleDateFormat("HH:mm:ss");
