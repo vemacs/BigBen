@@ -1,20 +1,17 @@
-package com.nullblock.vemacs.BigBen;
+package com.nullblock.vemacs.bigben;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ChatRunnable extends BukkitRunnable {
-
     String message;
-    String prefix;
 
-    public ChatRunnable(String prefix, String message) {
+    public ChatRunnable(String message) {
         this.message = message;
-        this.prefix = prefix;
     }
 
+    @Override
     public void run() {
-        prefix = prefix + " ";
-        Bukkit.broadcastMessage(prefix + message);
+        Bukkit.broadcastMessage(BigBen.getPrefix() + " " + message);
     }
 }

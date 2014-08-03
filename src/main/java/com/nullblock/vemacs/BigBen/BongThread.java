@@ -1,23 +1,20 @@
-package com.nullblock.vemacs.BigBen;
+package com.nullblock.vemacs.bigben;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class BongThread extends BukkitRunnable {
+    private int hour = -1;
 
-    private String prefix;
-
-    public BongThread(String prefix) {
-        this.prefix = prefix;
-    }
-
+    @Override
     public void run() {
         int currentHour = Integer.parseInt(BongLib.getTimeString().substring(0, 2));
-        if (BongLib.secondsUntilNextHour() == 0 && currentHour != BigBen.hour) {
-            BigBen.hour = currentHour;
-            Bukkit.getScheduler().runTask(BongLib.getBigBen(), new ChatRunnable(prefix, BongLib.bongText(BigBen.hour)));
+        if (BongLib.secondsUntilNextHour() == 0 && currentHour != hour) {
+            hour = currentHour;
+            Bukkit.getScheduler().runTask(
+                    BigBen.getInstance(),
+                    new ChatRunnable(BongLib.bongText(hour)));
         }
     }
-
 }
 

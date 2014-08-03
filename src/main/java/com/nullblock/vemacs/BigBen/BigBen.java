@@ -1,23 +1,39 @@
-package com.nullblock.vemacs.BigBen;
+package com.nullblock.vemacs.bigben;
 
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class BigBen extends JavaPlugin {
+import java.util.List;
 
-    public static int hour;
+public final class BigBen extends JavaPlugin {
+    private static String prefix;
+    private static List<String> welcomes;
+    private static BigBen instance;
 
     @Override
     public void onEnable() {
+        instance = this;
         saveDefaultConfig();
-        hour = -1;
-        this.getServer().getScheduler().runTaskTimerAsynchronously(this,
-                new BongThread(BongLib.textToColor(getConfig().getString("prefix"))), 0, 10);
-        new ChatListener(this);
+        load();
+        new BongThread().runTaskTimer(this, 0, 10);
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
     }
 
-    @Override
-    public void onDisable() {
-
+    public void load() {
+        prefix = getConfig().getString("prefix", "BigBen: ");
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+        welcomes = getConfig().getStringList("welcomes");
     }
 
+    public static List<String> getWelcomes() {
+        return welcomes;
+    }
+
+    public static String getPrefix() {
+        return prefix;
+    }
+
+    public static BigBen getInstance() {
+        return instance;
+    }
 }

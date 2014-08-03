@@ -1,9 +1,7 @@
-package com.nullblock.vemacs.BigBen;
+package com.nullblock.vemacs.bigben;
 
 import org.apache.commons.lang.StringEscapeUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.Plugin;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,18 +9,19 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class BongLib {
+    private BongLib() {}
 
     public static String getTimeString() {
         SimpleDateFormat timeUTC = new SimpleDateFormat("HH:mm:ss");
         timeUTC.setTimeZone(TimeZone.getTimeZone("GMT"));
         SimpleDateFormat dateFormatLocal = new SimpleDateFormat("HH:mm:ss");
-        String time = null;
+        String time;
         try {
             time = dateFormatLocal.parse(timeUTC.format(new Date())).toString().substring(11, 19).trim();
             return time;
         } catch (ParseException ignored) {
         }
-        return time;
+        return null;
     }
 
     public static int secondOfDay() {
@@ -40,34 +39,11 @@ public class BongLib {
 
     public static String bongText(int hours) {
         String text = "";
-        hours = hours % 12;
-        if (hours == 0) {
-            hours = 12;
-        }
-        for (int i = 1; i <= hours; i++) {
-            text = text + "BONG ";
-        }
+        hours %= 12;
+        hours = hours == 0 ? 12 : hours;
+        for (int i = 1; i <= hours; i++)
+            text += "BONG ";
         return text;
-    }
-
-    public static String textToColor(String text) {
-        //copied from http://forums.bukkit.org/threads/simple-colors-parsing-method.32058/#post-1251988
-        char[] chrarray = text.toCharArray();
-
-        for (int index = 0; index < chrarray.length; index++) {
-            char chr = chrarray[index];
-            if (chr != '&') {
-                continue;
-            }
-            if ((index + 1) == chrarray.length) {
-                break;
-            }
-            char forward = chrarray[index + 1];
-            if ((forward >= '0' && forward <= '9') || (forward >= 'a' && forward <= 'f') || (forward >= 'k' && forward <= 'r')) {
-                chrarray[index] = '\u00A7';
-            }
-        }
-        return new String(chrarray);
     }
 
     public static String replaceAcutesHTML(String str) {
@@ -89,9 +65,4 @@ public class BongLib {
         str = str.replaceAll("\\s+", " ").trim();
         return str;
     }
-
-    public static Plugin getBigBen() {
-        return Bukkit.getServer().getPluginManager().getPlugin("BigBen");
-    }
-
 }
