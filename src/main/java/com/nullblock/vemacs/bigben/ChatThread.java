@@ -23,7 +23,7 @@ public class ChatThread extends BukkitRunnable {
         } catch (Exception ignored) {
         }
         assert response != null;
-        response = response.replaceAll("(?i)zoe", "BigBen");
+        response = response.replaceAll("(?i)cleverbot", "BigBen");
         response = BongLib.replaceAcutesHTML(response);
         response = BongLib.cleanUp(response);
         String message = player + ": " + response;

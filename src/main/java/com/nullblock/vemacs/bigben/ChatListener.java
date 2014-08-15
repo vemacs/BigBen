@@ -23,7 +23,7 @@ public class ChatListener implements Listener {
         random = new Random();
         ChatterBot bot1;
         try {
-            bot1 = factory.create(ChatterBotType.PANDORABOTS, "83e198ed1e345ab2");
+            bot1 = factory.create(ChatterBotType.CLEVERBOT);
             bot1session = bot1.createSession();
         } catch (Exception ignored) {
         }
@@ -35,7 +35,7 @@ public class ChatListener implements Listener {
         String player = event.getPlayer().getName();
         if (eventMessage.startsWith("bigben: ")) {
             String message = eventMessage.substring(8, eventMessage.length());
-            message = message.replace("(?i)bigben", "Zoe");
+            message = message.replace("(?i)bigben", "CleverBot");
             new ChatThread(message, player, this.bot1session)
                     .runTaskAsynchronously(BigBen.getInstance());
         }
